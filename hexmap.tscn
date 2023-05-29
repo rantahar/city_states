@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://game.gd" type="Script" id=1]
+[ext_resource path="res://sprites/forest_pixel_1.png" type="Texture" id=2]
+[ext_resource path="res://sprites/grass_1.png" type="Texture" id=3]
+[ext_resource path="res://sprites/water_2.png" type="Texture" id=4]
+[ext_resource path="res://sprites/mountain_1.png" type="Texture" id=5]
+[ext_resource path="res://HexMap.gd" type="Script" id=6]
+
+[sub_resource type="TileSet" id=1]
+0/name = "forest_pixel_1.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 1, 1, 320, 340 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+1/name = "grass_1.png 1"
+1/texture = ExtResource( 3 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 1, 1, 320, 340 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shapes = [  ]
+1/z_index = 0
+2/name = "water_2.png 2"
+2/texture = ExtResource( 4 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 1, 1, 320, 340 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shapes = [  ]
+2/z_index = 0
+3/name = "mountain_1.png 3"
+3/texture = ExtResource( 5 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 1, 1, 320, 340 )
+3/tile_mode = 0
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shapes = [  ]
+3/z_index = 0
+
+[node name="Game" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+cell_size = Vector2( 316, 254 )
+cell_half_offset = 0
+occluder_light_mask = 0
+format = 1
+script = ExtResource( 6 )
+
+[node name="UI" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI"]
+margin_right = 435.0
+margin_bottom = 360.0
+text = "Hello"
+
