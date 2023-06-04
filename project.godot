@@ -8,9 +8,44 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Player",
+"class": "AIPlayer",
+"language": "GDScript",
+"path": "res://player/AIPlayer.gd"
+}, {
+"base": "Node",
+"class": "City",
+"language": "GDScript",
+"path": "res://City.gd"
+}, {
+"base": "Player",
+"class": "LocalHumanPlayer",
+"language": "GDScript",
+"path": "res://player/LocalHumanPlayer.gd"
+}, {
+"base": "Node",
+"class": "Player",
+"language": "GDScript",
+"path": "res://player/Player.gd"
+}, {
+"base": "Player",
+"class": "RemotePlayer",
+"language": "GDScript",
+"path": "res://player/RemotePlayer.gd"
+}, {
+"base": "Reference",
+"class": "Tile",
+"language": "GDScript",
+"path": "res://tile.gd"
+} ]
 _global_script_class_icons={
-
+"AIPlayer": "",
+"City": "",
+"LocalHumanPlayer": "",
+"Player": "",
+"RemotePlayer": "",
+"Tile": ""
 }
 
 [application]

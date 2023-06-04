@@ -1,8 +1,8 @@
 extends TileMap
 
-var Tile = preload("res://tile.gd")
-onready var info_label = get_node("/root/Game/UI/Label")
+onready var info_label = get_node("/root/Game/UI/TilePopup/Label")
 onready var game = get_node("/root/Game")
+
 
 func set_cells_map():
 	for i in range(len(game.grid)):
@@ -13,12 +13,11 @@ func set_cells_map():
 				Tile.Terrain.FOREST:
 					set_cell(i, j, 0)
 				Tile.Terrain.MOUNTAIN:
-					set_cell(i, j, 2)
-				Tile.Terrain.WATER:
 					set_cell(i, j, 3)
+				Tile.Terrain.WATER:
+					set_cell(i, j, 2)
 				_:
 					set_cell(i, j, -1)
-
 
 
 # Called when the node enters the scene tree for the first time.
@@ -30,12 +29,14 @@ func _input(event):
 	# Check if left mouse button is clicked.
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
 		# Get mouse position.
-		var mouse_pos = get_global_mouse_position()
+		var mouse_pos = get_global_mouse_position() - game.position
 		# Convert to tile coordinates.
 		var tile_pos = world_to_map(mouse_pos)
-		var tile_type = get_cell(tile_pos.x, tile_pos.y)
-		# Print the tile coordinates.
-		info_label.text = "Tile position: " + str(tile_pos) + ", Tile type: " + str(tile_type)
+		var clicked_tile = game.grid[tile_pos.x][tile_pos.y]
+		
+		if clicked_tile:
+			var popup = get_node("/root/Game/UI/TilePopup")
+			popup.update_popup(clicked_tile)
 
 func _process(delta):
 	set_cells_map()
