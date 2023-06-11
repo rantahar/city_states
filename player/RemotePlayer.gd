@@ -1,10 +1,10 @@
 extends Player
 class_name RemotePlayer
 
-func is_done():
-	return true
 
 func turnActions():
-	# Check user input to decide actions
-	pass
+	# Check for input from the server
+	
+	# Not implemented, so just skip the turn
+	is_done = true
 	

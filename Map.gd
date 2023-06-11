@@ -2,6 +2,8 @@ extends Node2D
 
 onready var game = get_node("/root/Game")
 
+signal tile_clicked(tile)
+
 var drag_previous_position = Vector2()
 var zoom_speed = 0.1
 var min_zoom = 0.5
@@ -22,7 +24,7 @@ func _ready():
 	add_child(click_timer)
 	click_timer.connect("timeout", self, "_on_click_timer_timeout")
 
-func _input(event):
+func _unhandled_input(event):
 	# Check if left mouse button is clicked.
 	if event is InputEventMouseButton:
 		var old_scale = self.scale.x
@@ -71,10 +73,11 @@ func _on_click_timer_timeout():
 
 func handle_tile_click(event):
 	var global_mouse_pos = get_global_mouse_position()
-	var adjusted_mouse_pos = global_mouse_pos - game.position
+	var zoom = self.scale.x
+	var adjusted_mouse_pos = (global_mouse_pos - game.position) / zoom
 	var tile_pos = $BaseMap.world_to_map(adjusted_mouse_pos)
 	var clicked_tile = game.grid[tile_pos.x][tile_pos.y]
 	
 	if clicked_tile:
-		var popup = get_node("/root/Game/UI/TilePopup")
-		popup.update_popup(clicked_tile)
+		emit_signal("tile_clicked", clicked_tile)
+

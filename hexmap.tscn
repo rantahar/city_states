@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://Map.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://sprites/building_2.png" type="Texture" id=8]
 [ext_resource path="res://BuildingLayer.gd" type="Script" id=9]
 [ext_resource path="res://TilePopup.gd" type="Script" id=10]
+[ext_resource path="res://TopPanel.gd" type="Script" id=11]
 
 [sub_resource type="TileSet" id=1]
 0/name = "forest_pixel_1.png 0"
@@ -91,6 +92,7 @@ margin_right = 40.0
 margin_bottom = 40.0
 
 [node name="TilePopup" type="WindowDialog" parent="UI"]
+editor/display_folded = true
 visible = true
 self_modulate = Color( 0.164706, 0.164706, 0.164706, 1 )
 margin_right = 200.0
@@ -140,4 +142,21 @@ margin_top = 5.0
 margin_right = 200.0
 margin_bottom = 19.0
 text = "/10"
+
+[node name="TopPanel" type="Panel" parent="UI"]
+margin_right = 1025.0
+margin_bottom = 40.0
+script = ExtResource( 11 )
+
+[node name="TurnLabel" type="Label" parent="UI/TopPanel"]
+margin_right = 81.0
+margin_bottom = 27.0
+text = "Turn: 1"
+
+[node name="EndTurnButton" type="Button" parent="UI/TopPanel"]
+margin_left = 947.369
+margin_top = 10.5263
+margin_right = 1014.37
+margin_bottom = 30.5263
+text = "End Turn"
 

@@ -3,14 +3,17 @@ extends Node2D
 var grid = []
 var cities = []
 
+var current_turn = 1
 enum GameState { PLAYER_TURN, AI_TURN, END_GAME }
 var currentState = GameState.PLAYER_TURN
-var playerIndex = 0
+
 
 var players = [
 	LocalHumanPlayer.new(),
 	AIPlayer.new()
 ]
+var playerIndex = 0
+var current_player = players[playerIndex]
 
 var map = [
 	[3, 3, 3, 3, 3],
@@ -21,7 +24,11 @@ var map = [
 ]
 
 
-# Called when the node enters the scene tree for the first time.
+func update_turn_label():
+	var turn_label = $UI/TopPanel/TurnLabel
+	turn_label.text = "Turn: " + str(current_turn)
+
+
 func _init():
 	var grid_width = len(map)
 	var grid_height = len(map[0])
@@ -32,24 +39,31 @@ func _init():
 	cities.append(City.new(Vector2(1, 1), players[0]))
 	cities.append(City.new(Vector2(3, 3), players[1]))
 
+
 func _ready():
-	pass
+	$Map.connect("tile_clicked", $UI/TilePopup, "_on_tile_clicked")
+	$UI/TopPanel.connect("end_turn_button_pressed", self, "end_turn")
+
+func end_turn():
+	current_player.end_turn()
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
 	if players[playerIndex].is_done():
-		playerIndex = (playerIndex + 1) % players.size()
+		playerIndex = (playerIndex + 1)
+		if playerIndex >= players.size():
+			playerIndex = 0
+			current_turn +=1
+			update_turn_label()
+			
+		current_player = players[playerIndex]
+		current_player.start_turn()
+
 		if players[playerIndex] is LocalHumanPlayer:
 			currentState = GameState.PLAYER_TURN
 		elif players[playerIndex] is AIPlayer:
 			currentState = GameState.AI_TURN
 	
-	match currentState:
-		GameState.PLAYER_TURN:
-			# take inputs from the player UI
-			pass
-		_:
-			# Just keep updating the map while the AI (or remote player) takes actions
-			pass
+	current_player.turnActions()
 

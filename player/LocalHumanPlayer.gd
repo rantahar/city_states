@@ -1,10 +1,8 @@
 extends Player
 class_name LocalHumanPlayer
 
-func is_done():
-	return true
+# Local human players actions are controlled by the UI, so the turnActions function
+# does not need to be implemented. Instead, each UI element should call a function here.
 
-func turnActions():
-	# Check user input to decide actions
-	pass
-	
+func end_turn():
+	self.is_done = true

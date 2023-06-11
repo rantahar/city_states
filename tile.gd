@@ -34,5 +34,3 @@ func get_terrain_string():
 		_:
 			return("")
 
-
-
