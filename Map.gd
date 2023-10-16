@@ -74,10 +74,13 @@ func _on_click_timer_timeout():
 func handle_tile_click(event):
 	var global_mouse_pos = get_global_mouse_position()
 	var zoom = self.scale.x
-	var adjusted_mouse_pos = (global_mouse_pos - game.position) / zoom
+	var adjusted_mouse_pos = (global_mouse_pos - self.position) / zoom
 	var tile_pos = $BaseMap.world_to_map(adjusted_mouse_pos)
-	var clicked_tile = game.grid[tile_pos.x][tile_pos.y]
+	print(tile_pos)
 	
-	if clicked_tile:
-		emit_signal("tile_clicked", clicked_tile)
+	if tile_pos.x >= 0 && tile_pos.x < game.grid.size():
+		if tile_pos.y >= 0 && tile_pos.y < game.grid[tile_pos.x].size():
+			var clicked_tile = game.grid[tile_pos.x][tile_pos.y]
+			if clicked_tile:
+				emit_signal("tile_clicked", clicked_tile)
 
