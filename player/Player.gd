@@ -11,6 +11,6 @@ func start_turn():
 func turnActions():
 	pass
 
-func is_done():
+func mark_done():
 	return self.is_done
 

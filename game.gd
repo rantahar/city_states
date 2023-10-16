@@ -1,17 +1,16 @@
 extends Node2D
 
+var players = [
+	LocalHumanPlayer.new(),
+	AIPlayer.new()
+]
 var grid = []
 var cities = []
 
 var current_turn = 1
 enum GameState { PLAYER_TURN, AI_TURN, END_GAME }
+
 var currentState = GameState.PLAYER_TURN
-
-
-var players = [
-	LocalHumanPlayer.new(),
-	AIPlayer.new()
-]
 var playerIndex = 0
 var current_player = players[playerIndex]
 
@@ -24,33 +23,39 @@ var map = [
 ]
 
 
-func update_turn_label():
-	var turn_label = $UI/TopPanel/TurnLabel
-	turn_label.text = "Turn: " + str(current_turn)
-
-
 func _init():
+	print("Map init")
+	pass
+	
+
+func _ready():
+	print("Map ready")
 	var grid_width = len(map)
 	var grid_height = len(map[0])
 	for i in range(grid_width):
 		grid.append([])
 		for j in range(grid_height):
-			grid[i].append(Tile.new(map[j][i], i, j))
-	cities.append(City.new(Vector2(1, 1), players[0]))
-	cities.append(City.new(Vector2(3, 3), players[1]))
+			grid[i].append(Tile.new(self, map[j][i], i, j))
+	
+	grid[1][1].create_city(players[0])
+	grid[3][3].create_city(players[1])
 
-
-func _ready():
 	$Map.connect("tile_clicked", $UI/TilePopup, "_on_tile_clicked")
 	$UI/TopPanel.connect("end_turn_button_pressed", self, "end_turn")
+	
+	call_deferred("create_initial_cities")
+	
+
+func update_turn_label():
+	var turn_label = $UI/TopPanel/TurnLabel
+	turn_label.text = "Turn: " + str(current_turn)
 
 func end_turn():
 	current_player.end_turn()
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if players[playerIndex].is_done():
+	if players[playerIndex].mark_done():
 		playerIndex = (playerIndex + 1)
 		if playerIndex >= players.size():
 			playerIndex = 0
