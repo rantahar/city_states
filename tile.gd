@@ -51,7 +51,7 @@ func get_production():
 		Terrain.MOUNTAIN:
 			return({})
 		Terrain.FOREST:
-			return({"food": 1})
+			return({"food": 1, "labor": 1})
 		Terrain.WATER:
 			return({"food": 1})
 		_:
@@ -61,3 +61,5 @@ func create_city(player):
 	city = City.new(location, player)
 	game.cities.append(city)
 
+func level_up():
+	level += 1
