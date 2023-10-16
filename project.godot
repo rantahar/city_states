@@ -51,6 +51,7 @@ _global_script_class_icons={
 [application]
 
 config/name="4x"
+run/main_scene="res://hexmap.tscn"
 config/icon="res://icon.png"
 
 [rendering]
