@@ -125,42 +125,18 @@ margin_right = 113.0
 margin_bottom = 66.0
 
 [node name="TileLabel" type="Label" parent="UI/TilePopup/RowContainer"]
-margin_right = 200.0
+margin_right = 180.0
 margin_bottom = 14.0
 text = "Tile 1, 1"
 
 [node name="Description" type="RichTextLabel" parent="UI/TilePopup/RowContainer"]
 margin_top = 18.0
-margin_right = 200.0
+margin_right = 180.0
 margin_bottom = 78.0
 rect_min_size = Vector2( 180, 60 )
 text = "Resources:
 Improvements:
 City Information:"
-
-[node name="LaborContainer" type="HBoxContainer" parent="UI/TilePopup/RowContainer"]
-margin_top = 82.0
-margin_right = 200.0
-margin_bottom = 106.0
-
-[node name="BtnLeft" type="Label" parent="UI/TilePopup/RowContainer/LaborContainer"]
-margin_top = 5.0
-margin_right = 97.0
-margin_bottom = 19.0
-text = "Labor Assigned"
-
-[node name="Button" type="SpinBox" parent="UI/TilePopup/RowContainer/LaborContainer"]
-margin_left = 101.0
-margin_right = 175.0
-margin_bottom = 24.0
-max_value = 10.0
-
-[node name="BtnRight" type="Label" parent="UI/TilePopup/RowContainer/LaborContainer"]
-margin_left = 179.0
-margin_top = 5.0
-margin_right = 200.0
-margin_bottom = 19.0
-text = "/10"
 
 [node name="TopPanel" type="Panel" parent="UI"]
 margin_right = 1025.0
