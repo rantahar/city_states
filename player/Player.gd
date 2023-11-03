@@ -8,7 +8,7 @@ var is_done = false
 func start_turn():
 	is_done = false
 
-func turnActions():
+func takeActions():
 	pass
 
 func mark_done():

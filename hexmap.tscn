@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://game.gd" type="Script" id=1]
 [ext_resource path="res://Map.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://BuildingLayer.gd" type="Script" id=9]
 [ext_resource path="res://TilePopup.gd" type="Script" id=10]
 [ext_resource path="res://TopPanel.gd" type="Script" id=11]
+[ext_resource path="res://fonts/Antic/Antic-Regular.ttf" type="DynamicFontData" id=12]
 
 [sub_resource type="TileSet" id=1]
 0/name = "forest_pixel_1.png 0"
@@ -86,6 +87,12 @@
 0/shapes = [  ]
 0/z_index = 0
 
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 12 )
+
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 4 )
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -110,6 +117,7 @@ script = ExtResource( 9 )
 [node name="UI" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
+theme = SubResource( 3 )
 
 [node name="TilePopup" type="WindowDialog" parent="UI"]
 visible = true
@@ -119,24 +127,6 @@ margin_bottom = 200.0
 rect_min_size = Vector2( 10, 10 )
 window_title = "Plains"
 script = ExtResource( 10 )
-
-[node name="RowContainer" type="VBoxContainer" parent="UI/TilePopup"]
-margin_right = 113.0
-margin_bottom = 66.0
-
-[node name="TileLabel" type="Label" parent="UI/TilePopup/RowContainer"]
-margin_right = 180.0
-margin_bottom = 14.0
-text = "Tile 1, 1"
-
-[node name="Description" type="RichTextLabel" parent="UI/TilePopup/RowContainer"]
-margin_top = 18.0
-margin_right = 180.0
-margin_bottom = 78.0
-rect_min_size = Vector2( 180, 60 )
-text = "Resources:
-Improvements:
-City Information:"
 
 [node name="TopPanel" type="Panel" parent="UI"]
 margin_right = 1025.0

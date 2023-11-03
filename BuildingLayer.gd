@@ -1,6 +1,6 @@
 extends TileMap
 
-var Tile = preload("res://tile.gd")
+var Tile = preload("res://Tile.gd")
 onready var game = get_node("/root/Game")
 
 func _process(delta):

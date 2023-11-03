@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Tile",
 "language": "GDScript",
-"path": "res://tile.gd"
+"path": "res://Tile.gd"
 } ]
 _global_script_class_icons={
 "AIPlayer": "",
@@ -53,6 +53,10 @@ _global_script_class_icons={
 config/name="4x"
 run/main_scene="res://hexmap.tscn"
 config/icon="res://icon.png"
+
+[gui]
+
+theme/custom_font="res://fonts/Antic/Antic.tres"
 
 [rendering]
 

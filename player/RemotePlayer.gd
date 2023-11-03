@@ -2,7 +2,7 @@ extends Player
 class_name RemotePlayer
 
 
-func turnActions():
+func takeActions():
 	# Check for input from the server
 	
 	# Not implemented, so just skip the turn
