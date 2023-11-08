@@ -6,10 +6,15 @@ enum Terrain { PLAINS, MOUNTAIN, FOREST, WATER }
 var location : Vector2
 var x : int
 var y : int
+var neighbours: Dictionary = {}
+
 var terrain = Terrain.PLAINS
-var city : City = null
-var resources = []
+var city = null
+var city_owner = null 
+var player_owner = null
+
 var current_improvements = {}
+var resources = []
 
 var food_production = 0
 var labor_saving = 0

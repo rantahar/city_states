@@ -25,9 +25,12 @@ func _init():
 	pass
 
 func create_city(tile, player):
-	var city =  City.new(tile.location, player)
+	var city =  City.new(tile, player)
 	tile.city = city
 	cities.append(city)
+	
+	var building_layer = get_node("Map/BuildingLayer")
+	building_layer.update_borders()
 
 func _ready():
 	print("Game ready")
@@ -37,6 +40,31 @@ func _ready():
 		grid.append([])
 		for j in range(grid_height):
 			grid[i].append(Tile.new(map[j][i], i, j))
+	
+	for i in range(grid_width):
+		for j in range(grid_height):
+			var tile = grid[i][j]
+			var neighbor_positions
+			var neighbor_directions = ["west", "east", "northwest", "northeast", "southwest", "southeast"]
+			if j % 2 == 0:
+				neighbor_positions = [
+					Vector2(i-1, j), Vector2(i+1, j), 
+					Vector2(i, j-1), Vector2(i+1, j-1), 
+					Vector2(i, j+1), Vector2(i+1, j+1)
+				]
+			else:
+				neighbor_positions = [
+					Vector2(i-1, j), Vector2(i+1, j), 
+					Vector2(i-1, j-1), Vector2(i, j-1), 
+					Vector2(i-1, j+1), Vector2(i, j+1)
+				]
+			
+			for index in range(neighbor_positions.size()):
+				var pos = neighbor_positions[index]
+				if (pos.x >= 0 and pos.x < grid.size() and pos.y >= 0 and pos.y < grid[i].size()):
+					var direction = neighbor_directions[index]
+					tile.neighbours[direction] = grid[int(pos.x)][int(pos.y)]
+
 	
 	create_city(grid[1][1], players[0])
 	create_city(grid[3][3], players[1])
