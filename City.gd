@@ -12,6 +12,9 @@ func _init(_tile, _player : Player):
 	self.player = _player
 	self.level = 0
 	
+	self.tile.city_owner = self
+	self.tile.player_owner = player
+	
 	for direction in tile.neighbours.keys():
 		var neighbour = tile.neighbours[direction]
 		if neighbour.city_owner == null:

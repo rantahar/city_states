@@ -1,8 +1,8 @@
 extends Node2D
 
 var players = [
-	LocalHumanPlayer.new(),
-	AIPlayer.new()
+	LocalHumanPlayer.new(0),
+	AIPlayer.new(1)
 ]
 var grid = []
 var cities = []
@@ -12,11 +12,11 @@ var playerIndex = 0
 var current_player = players[playerIndex]
 
 var map = [
-	[3, 3, 3, 3, 3],
-	[3, 0, 0, 2, 3],
-	[3, 0, 1, 2, 3],
-	[3, 1, 1, 2, 3],
-	[3, 3, 3, 3, 3]
+	[3, 3, 3, 3, 3, 3],
+	[3, 0, 0, 2, 3, 3],
+	[3, 0, 1, 2, 2, 3],
+	[3, 1, 1, 2, 3, 3],
+	[3, 3, 3, 3, 3, 3]
 ]
 
 
@@ -34,8 +34,8 @@ func create_city(tile, player):
 
 func _ready():
 	print("Game ready")
-	var grid_width = len(map)
-	var grid_height = len(map[0])
+	var grid_width = len(map[0])
+	var grid_height = len(map)
 	for i in range(grid_width):
 		grid.append([])
 		for j in range(grid_height):
@@ -46,7 +46,7 @@ func _ready():
 			var tile = grid[i][j]
 			var neighbor_positions
 			var neighbor_directions = ["west", "east", "northwest", "northeast", "southwest", "southeast"]
-			if j % 2 == 0:
+			if j % 2 == 1:
 				neighbor_positions = [
 					Vector2(i-1, j), Vector2(i+1, j), 
 					Vector2(i, j-1), Vector2(i+1, j-1), 

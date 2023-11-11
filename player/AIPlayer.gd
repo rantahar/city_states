@@ -1,6 +1,10 @@
 extends Player
 class_name AIPlayer
 
+
+func _init(player_number).(player_number):
+	pass
+
 func takeActions():
 	# Take an action as the AI
 	
