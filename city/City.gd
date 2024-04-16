@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 class_name City
 
 var tile  # The Tile that this City is located on.
@@ -21,6 +21,7 @@ func _init(_tile, _player : Player):
 			neighbour.city_owner = self
 		if neighbour.player_owner == null:
 			neighbour.player_owner = player
-	
 
 
+func _ready():
+	pass 

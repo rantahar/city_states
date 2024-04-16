@@ -14,10 +14,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/AIPlayer.gd"
 }, {
-"base": "Node",
+"base": "Node2D",
 "class": "City",
 "language": "GDScript",
-"path": "res://City.gd"
+"path": "res://city/City.gd"
 }, {
 "base": "Player",
 "class": "LocalHumanPlayer",
@@ -34,10 +34,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/RemotePlayer.gd"
 }, {
-"base": "Reference",
+"base": "Node2D",
 "class": "Tile",
 "language": "GDScript",
-"path": "res://Tile.gd"
+"path": "res://tile/Tile.gd"
 } ]
 _global_script_class_icons={
 "AIPlayer": "",

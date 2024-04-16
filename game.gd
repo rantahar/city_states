@@ -1,4 +1,6 @@
 extends Node2D
+var city_scene = load("res://city/City.tscn")
+var tile_scene = load("res://tile/Tile.tscn")
 
 var players = [
 	LocalHumanPlayer.new(0),
@@ -25,9 +27,11 @@ func _init():
 	pass
 
 func create_city(tile, player):
-	var city =  City.new(tile, player)
-	tile.city = city
-	cities.append(city)
+	var map = $Map
+	var city = city_scene.instance()
+	map.add_child(city)
+	print("T", tile.position, tile.x, tile.y)
+	city.position = tile.position
 	
 	var building_layer = get_node("Map/BuildingLayer")
 	building_layer.update_borders()
@@ -39,7 +43,13 @@ func _ready():
 	for i in range(grid_width):
 		grid.append([])
 		for j in range(grid_height):
-			grid[i].append(Tile.new(map[j][i], i, j))
+			var tile = tile_scene.instance()
+			tile.setup(map[j][i], i, j)
+			if j % 2 == 1:
+				tile.position = Vector2(i*316 + 127, j*254)
+			else:
+				tile.position = Vector2(i*316, j*254)
+			grid[i].append(tile)
 	
 	for i in range(grid_width):
 		for j in range(grid_height):
@@ -66,13 +76,13 @@ func _ready():
 					tile.neighbours[direction] = grid[int(pos.x)][int(pos.y)]
 
 	
+	create_city(grid[0][0], players[0])
+	create_city(grid[1][0], players[0])
 	create_city(grid[1][1], players[0])
 	create_city(grid[3][3], players[1])
 	
 	$Map.connect("tile_clicked", $UI/TilePopup, "_on_tile_clicked")
 	$UI/TopPanel.connect("end_turn_button_pressed", self, "end_turn")
-	
-	call_deferred("create_initial_cities")
 	
 
 func update_turn_label():

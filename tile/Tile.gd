@@ -1,4 +1,4 @@
-extends Reference
+extends Node2D
 class_name Tile
 
 enum Terrain { PLAINS, MOUNTAIN, FOREST, WATER }
@@ -26,7 +26,7 @@ var available_improvements = {
 }
 
 
-func _init(_terrain = Terrain.PLAINS, _x = 0, _y = 0):
+func setup(_terrain = Terrain.PLAINS, _x = 0, _y = 0):
 	terrain = _terrain
 	x = _x
 	y = _y
